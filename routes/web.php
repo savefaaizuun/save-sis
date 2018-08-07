@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home');
+Route::get('/konfig-tahun', function () {
+    return view('konfigurasi/tahun_ajaran');
 });
 
 Route::get('about', function () {

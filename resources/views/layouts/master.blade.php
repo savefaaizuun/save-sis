@@ -1,16 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-	<title>Latihan Blade Templates</title>
-</head>
-<body>
-@include('layouts.header')
-
-	@yield('content')
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html>
 

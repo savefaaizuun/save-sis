@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.master')
 
 {{-- @extends('layouts.sidebar') --}}
 
