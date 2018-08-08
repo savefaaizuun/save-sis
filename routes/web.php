@@ -23,3 +23,6 @@ Route::get('about', function () {
     return view('about');
 });
 
+Route::resource('tahun_ajaran', 'TahunAjaranController');
+Route::get('api/tahun_ajaran', 'TahunAjaranController@apiTahunAjaran')->name('api.tahun_ajaran');
+

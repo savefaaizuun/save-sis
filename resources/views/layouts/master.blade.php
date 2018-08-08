@@ -8,56 +8,88 @@
 <body>
 
 	@include('layouts.sidebar')
-
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-10">
-        <h2>Layouts</h2>
-        <ol class="breadcrumb">
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li class="active">
-                <strong>Layouts</strong>
-            </li>
-        </ol>
-    </div>
-    <div class="col-lg-2">
-
-    </div>
-</div>
-
-
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-content text-center p-md">
-
-                    <h2><span class="text-navy">INSPINIA - Responsive Admin Theme</span>
-                    is provided with two main layouts <br/>three skins and separate configure options.</h2>
-
-                    <p>
-                        All config options you can trun on/off from the theme box configuration (green icon on the left side of page).
-                    </p>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- content -->
     @yield('content')
 
 
-</div>
 
 @include('layouts.footer')
 
 <script>
     $(document).ready(function(){
 
+        var table = $('#konfig-tahun-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "{{ route('api.tahun_ajaran')}}",
+            columns: [
+                {data:'id', name: 'id'},
+                {data:'tahun_akademik', name: 'tahun_akademik'},
+                {data:'semester', name: 'semester'},
+                {data:'is_aktif', name: 'is_aktif'},
+                {data:'action', name: 'action', orderable:false, searchable:false}
+                ]
+        });
+
+        $('#modal-form form').validator().on('submit', function(e){
+            if (!e.isDefaultPrevented()){
+                var id = $('#id').val();
+                if(save_method == 'add'){
+                    url = "{{ url('tahun_ajaran')}}";
+                } else {
+                    url = "{{ url('tahun_ajaran') . '/'}}" +id;
+                }
+
+                $.ajax({
+                    url : url,
+                    type : "POST",
+                    data : $('#modal-form form').serialize(),
+                    success : function(data){
+                      console.log('sukses');
+                      $('#modal-form').modal('hide');
+                      table.ajax.reload();
+                      if (save_method == 'add') {
+                        swal({
+                          title: 'Success!',
+                          text : 'Data berhasil di tambahkan',
+                          type : 'success',
+                          timer : '1500' 
+                        })
+                      } else {
+                        swal({
+                          title: 'Success!',
+                          text : 'Data berhasil di update',
+                          type : 'success',
+                          timer : '1500' 
+                        })  
+                      }
+                      
+                    },
+                    error : function(){
+                     // alert('Oops! Something error'); 
+                       swal({
+                        title : 'Oops ...',
+                        text : 'terjasi kesalahan!',
+                        type : 'error',
+                        timer : '1500'
+                      })
+                    }
+                  });
+            }
+            
+        });
 
     });
+
+    function addForm(){
+            save_method = "add";
+            console.log(save_method);
+            $('#modal-form').modal('show');
+            $('#modal-form form')[0].reset();
+            $('.modal-title').text('Tambah Konfigurasi Tahun Akademik');
+        }
+
+
 </script>
 
 
