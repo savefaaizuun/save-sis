@@ -95,7 +95,7 @@
                 <div class="form-group">
                     <label for="name" class="col-md-3 control-label">Semester</label>
                     <div class="col-md-6">
-                        <input type="email" id="email" name="email" class="form-control" required>
+                        <input type="text" id="semester" name="semester" class="form-control" required>
                         <span class="help-block with-errors"></span>
                     </div>
                 </div>          

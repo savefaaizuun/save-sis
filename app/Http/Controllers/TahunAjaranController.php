@@ -38,7 +38,14 @@ class TahunAjaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // print_r($request);die;
+        $data = [
+            'tahun_akademik' => $request['tahun_akademik'],
+            'semester' => $request['semester']
+        ];
+
+        return TahunAjaran::create($data);
+        // return DB::table('sis_konfig_tahun_akademik')->insert($data);
     }
 
     /**

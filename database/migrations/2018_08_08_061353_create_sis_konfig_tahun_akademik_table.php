@@ -17,7 +17,7 @@ class CreateSisKonfigTahunAkademikTable extends Migration
             $table->increments('id');
             $table->integer('tahun_akademik');
             $table->string('semester');
-            $table->string('is_aktif');
+            $table->string('is_aktif')->nullable();
             $table->timestamps();
         });
     }

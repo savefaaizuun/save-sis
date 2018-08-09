@@ -8,3 +8,10 @@
 
     <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+    <!--Datatables -->
+    <link href="assets/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!--SweeetAlert -->
+    <script src="assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <link href="assets/css/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet">
