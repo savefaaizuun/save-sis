@@ -98,6 +98,13 @@
                         <input type="text" id="semester" name="semester" class="form-control" required>
                         <span class="help-block with-errors"></span>
                     </div>
+                </div> 
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Status Aktif</label>
+                    <div class="col-md-1">
+                        <input type="checkbox" id="is_aktif" name="is_aktif" class="form-control">
+                        <span class="help-block with-errors"></span>
+                    </div>
                 </div>          
             </div>
 

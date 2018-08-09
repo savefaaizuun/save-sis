@@ -39,9 +39,11 @@ class TahunAjaranController extends Controller
     public function store(Request $request)
     {
         // print_r($request);die;
+        $is_aktif = ($request['is_aktif'] == 'on' ? '1' : '0');
         $data = [
             'tahun_akademik' => $request['tahun_akademik'],
-            'semester' => $request['semester']
+            'semester' => $request['semester'],
+            'is_aktif' => $is_aktif
         ];
 
         return TahunAjaran::create($data);
@@ -104,6 +106,15 @@ class TahunAjaranController extends Controller
                 return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i>Show</a> '.
                     '<a onclick="editForm('.$tahun_ajar->id.')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> '.
                     '<a onclick="deleteData('.$tahun_ajar->id.')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
-                })->make(true);
+                })
+            
+            ->editColumn('is_aktif', function($tahun_ajar) {
+                $status = ($tahun_ajar->is_aktif == '1' ? '<i class="fa fa-check" aria-hidden="true"></i>' : '<i class="fa fa-times" aria-hidden="true"></i>');
+                // return $tahun_ajar->is_aktif ? '<i class="fa fa-check" aria-hidden="true"></i>' : '<i class="fa fa-times" aria-hidden="true"></i>';
+                return $status;
+                })
+            ->rawColumns(['is_aktif', 'action' ])
+            // ->rawColumns(['action'])
+            ->make(true);
     }    
 }

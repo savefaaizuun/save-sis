@@ -78,11 +78,13 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('api.tahun_ajaran')}}",
+
             columns: [
+
                 {data:'id', name: 'id'},
                 {data:'tahun_akademik', name: 'tahun_akademik'},
                 {data:'semester', name: 'semester'},
-                {data:'is_aktif', name: 'is_aktif'},
+                {data:'is_aktif', name: 'is_aktif', orderable:false, searchable:false},
                 {data:'action', name: 'action', orderable:false, searchable:false}
                 ]
         });
