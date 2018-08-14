@@ -69,7 +69,8 @@ class TahunAjaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tahun_ajar = TahunAjaran::find($id);
+        return $tahun_ajar;
     }
 
     /**
@@ -81,7 +82,12 @@ class TahunAjaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $tahun_ajar = TahunAjaran::find($id);
+        $tahun_ajar->tahun_akademik = $request['tahun_akademik'];
+        $tahun_ajar->semester = $request['semester'];
+        $tahun_ajar->update();
+
+        return $tahun_ajar;
     }
 
     /**
@@ -92,7 +98,7 @@ class TahunAjaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        TahunAjaran::destroy($id);
     }
 
     public function apiTahunAjaran(){
@@ -103,13 +109,13 @@ class TahunAjaranController extends Controller
 
         return Datatables::of($tahun_ajar)
             ->addColumn('action', function($tahun_ajar){
-                return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i>Show</a> '.
+                return '<a href="#" class="btn btn-info btn-xs"><i class="glyphicon glyphicon-eye-open"></i> Show</a> '.
                     '<a onclick="editForm('.$tahun_ajar->id.')" class="btn btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i> Edit</a> '.
                     '<a onclick="deleteData('.$tahun_ajar->id.')" class="btn btn-danger btn-xs"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
                 })
             
             ->editColumn('is_aktif', function($tahun_ajar) {
-                $status = ($tahun_ajar->is_aktif == '1' ? '<i class="fa fa-check" aria-hidden="true"></i>' : '<i class="fa fa-times" aria-hidden="true"></i>');
+                $status = ($tahun_ajar->is_aktif == '1' ? '<button class="btn btn-primary btn-xs"><i class="fa fa-check"></i> Aktif</button> ' : '<button class="btn btn-danger btn-xs"><i class="fa fa-times"></i> Tidak Aktif</button>');
                 // return $tahun_ajar->is_aktif ? '<i class="fa fa-check" aria-hidden="true"></i>' : '<i class="fa fa-times" aria-hidden="true"></i>';
                 return $status;
                 })
