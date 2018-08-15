@@ -127,10 +127,13 @@
 
             columns: [
 
-                {data:'id', name: 'id'},
+                 { data: 'DT_Row_Index', name: 'DT_Row_Index' },
+                // {data: 'id', name: 'id'},
                 {data:'tahun_akademik', name: 'tahun_akademik'},
-                {data:'semester', name: 'semester'},
-                {data:'is_aktif', name: 'is_aktif', orderable:false, searchable:false},
+                {data:'semester', name: 'semester'}
+                ,
+                {data:'is_aktif', name: 'is_aktif', orderable:false, searchable:false}
+                ,
                 {data:'action', name: 'action', orderable:false, searchable:false}
                 ]
         });
@@ -158,7 +161,13 @@
           $('#id').val(data.id);
           $('#tahun_akademik').val(data.tahun_akademik);
           $('#semester').val(data.semester);
-          $('is_aktif').val(data.is_aktif);
+          //cek val is_aktif
+          if (data.is_aktif == 1){
+            $('#is_aktif').attr('checked',true);
+          } else {
+            $('#is_aktif').attr('checked',false);
+          }
+          
         },
         error: function(){
           alert('Data tidak di temukan');
@@ -170,7 +179,7 @@
       // var popup = confirm("are you sure for delete this data?");
       var csrf_token = $('meta[name="csrf-token"]').attr('content');
       console.log(csrf_token);
-      
+
       swal({
         title: 'Apakah anda yakin?',
         text: 'Anda tidak dapat mengembalikan ini!',

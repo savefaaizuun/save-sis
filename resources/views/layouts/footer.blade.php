@@ -25,9 +25,7 @@
 <script src="{{ asset('assets/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
 
-<script src="{{ asset('assets/js/plugins/dataTables/dataTables.bootstrap.js') }}"></script>
-<script src="{{ asset('assets/js/plugins/dataTables/dataTables.responsive.js') }}"></script>
-<script src="{{ asset('assets/js/plugins/dataTables/dataTables.tableTools.min.js') }}"></script>
+
 
 
 

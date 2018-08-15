@@ -26,3 +26,7 @@ Route::get('about', function () {
 Route::resource('tahun_ajaran', 'TahunAjaranController');
 Route::get('api/tahun_ajaran', 'TahunAjaranController@apiTahunAjaran')->name('api.tahun_ajaran');
 
+
+Route::get('/konfig-kurikulum', function () {
+    return view('konfigurasi/kurikulum');
+});
