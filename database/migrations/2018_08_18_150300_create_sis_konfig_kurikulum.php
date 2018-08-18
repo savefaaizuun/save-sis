@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSisKonfigTahunAkademikTable extends Migration
+class CreateSisKonfigKurikulum extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateSisKonfigTahunAkademikTable extends Migration
      */
     public function up()
     {
-        Schema::create('sis_konfig_tahun_akademik', function (Blueprint $table) {
+        Schema::create('sis_konfig_kurikulum', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('tahun_akademik');
-            $table->string('semester', 4);
-            $table->string('is_aktif',2)->nullable();
+            $table->string('nama_kurikulum', 50);
+            $table->string('is_aktif', 2)->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateSisKonfigTahunAkademikTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sis_konfig_tahun_akademik');
+        Schema::dropIfExists('sis_konfig_kurikulum');
     }
 }
