@@ -55,8 +55,8 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kode Ruang</th>
-                        <th>Nama Ruang</th>
+                        <th>Kode Program Studi</th>
+                        <th>Nama Program Studi</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -84,16 +84,16 @@
             <div class="modal-body">
                 <input type="hidden" id="id" name="id">
                 <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">Kode Ruang</label>
+                    <label for="name" class="col-md-3 control-label">Kode Program Studi</label>
                     <div class="col-md-6">
-                        <input type="text" id="kode_ruang" name="kode_ruang" class="form-control" autofocus required>
+                        <input type="text" id="kode_prodi" name="kode_prodi" class="form-control" autofocus required>
                         <span class="help-block with-errors"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">Nama Ruang</label>
+                    <label for="name" class="col-md-3 control-label">Nama Program Studi</label>
                     <div class="col-md-6">
-                        <input type="text" id="nama_ruang" name="nama_ruang" class="form-control" autofocus required>
+                        <input type="text" id="nama_prodi" name="nama_prodi" class="form-control" autofocus required>
                         <span class="help-block with-errors"></span>
                     </div>
                 </div>
@@ -116,12 +116,12 @@
     var table = $('#ruangan-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('api.master_ruang')}}",
+        ajax: "{{ route('api.master_prodi')}}",
 
         columns: [
             {data: 'DT_Row_Index', name: 'DT_Row_Index'},
-            {data: 'kode_ruang', name: 'kode_ruang'},
-            {data: 'nama_ruang', name: 'nama_ruang'},
+            {data: 'kode_prodi', name: 'kode_prodi'},
+            {data: 'nama_prodi', name: 'nama_prodi'},
             {data:'action', name: 'action', orderable:false, searchable:false}
         ]
     })
@@ -140,7 +140,7 @@
         $('input[name=_method]').val('PATCH');
         $('#modal-form form')[0].reset();
         $.ajax({
-            url: "{{ url('master_ruang')}}" + '/' + id + "/edit",
+            url: "{{ url('master_prodi')}}" + '/' + id + "/edit",
             type: "GET",
             dataType: "JSON",
         })
@@ -150,8 +150,8 @@
             $('.modal-title').text('Edit Master Ruang');
 
             $('#id').val(data.id);
-            $('#kode_ruang').val(data.kode_ruang);
-            $('#nama_ruang').val(data.nama_ruang);
+            $('#kode_prodi').val(data.kode_prodi);
+            $('#nama_prodi').val(data.nama_prodi);
             
         })
         .fail(function() {
@@ -180,7 +180,7 @@
       }).then((result) => {
         if (result.value) {
             $.ajax({
-                url : "{{ url('master_ruang')}}"+ '/' + id,
+                url : "{{ url('master_prodi')}}"+ '/' + id,
           type : "POST",
           data : {'_method' : 'DELETE', '_token' : csrf_token},
             })
@@ -207,7 +207,7 @@
                 console.log("complete");
             });
             
-            } else {
+        } else {
           swal({
               title: 'Data batal hapus!',
               text : 'Batal Hapus',
@@ -224,9 +224,9 @@
        if (!e.isDefaultPrevented()) {
         var id = $('#id').val();
         if (save_method == 'add') 
-            url = "{{ url('master_ruang')}}";
+            url = "{{ url('master_prodi')}}";
         else 
-            url = "{{ url('master_ruang') . '/'}}" + id;
+            url = "{{ url('master_prodi') . '/'}}" + id;
         // console.log(url);
         // return false;
         $.ajax({

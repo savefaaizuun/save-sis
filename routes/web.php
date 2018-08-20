@@ -27,6 +27,13 @@ Route::get('ruangan', function () {
 
 Route::resource('master_ruang', 'RuangController');
 Route::get('api/master_ruang', 'RuangController@apiMasterRuang')->name('api.master_ruang');
+
+Route::get('program-studi', function () {
+    return view('master/program_studi');
+});
+
+Route::resource('master_prodi', 'ProgramStudiController');
+Route::get('api/master_prodi', 'ProgramStudiController@apiMasterProdi')->name('api.master_prodi');
 /*
 |--------------------------------------------------------------------------
 | End of Web Routes Konfigurasi
