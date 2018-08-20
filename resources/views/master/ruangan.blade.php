@@ -51,12 +51,12 @@
             </div>
         </div>
         <div class="ibox-content">
-            <table id="konfig-kurikulum-table" class="table table-striped table-bordered table-hover" >
+            <table id="ruangan-table" class="table table-striped table-bordered table-hover" >
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Ruangan</th>
-                        <th>Status</th>
+                        <th>Kode Ruang</th>
+                        <th>Nama Ruang</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -84,19 +84,19 @@
             <div class="modal-body">
                 <input type="hidden" id="id" name="id">
                 <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">Kurikulum</label>
+                    <label for="name" class="col-md-3 control-label">Kode Ruang</label>
                     <div class="col-md-6">
-                        <input type="text" id="nama_kurikulum" name="nama_kurikulum" class="form-control" autofocus required>
+                        <input type="text" id="kode_ruang" name="kode_ruang" class="form-control" autofocus required>
                         <span class="help-block with-errors"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name" class="col-md-3 control-label">Status Aktif</label>
-                    <div class="col-md-1">
-                        <input type="checkbox" id="is_aktif" name="is_aktif" class="form-control">
+                    <label for="name" class="col-md-3 control-label">Nama Ruang</label>
+                    <div class="col-md-6">
+                        <input type="text" id="nama_ruang" name="nama_ruang" class="form-control" autofocus required>
                         <span class="help-block with-errors"></span>
                     </div>
-                </div>          
+                </div>
             </div>
 
             <div class="modal-footer">
@@ -113,23 +113,26 @@
 
 <script>
 
-    var table = $('#konfig-kurikulum-table').DataTable({
+    var table = $('#ruangan-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('api.konfig_kurikulum')}}",
+        ajax: "{{ route('api.master_ruang')}}",
 
         columns: [
             {data: 'DT_Row_Index', name: 'DT_Row_Index'},
-            {data: 'nama_kurikulum', name: 'nama_kurikulum'},
-            {data: 'is_aktif', name: 'is_aktif', orderable:false, searchable:false},
+            {data: 'kode_ruang', name: 'kode_ruang'},
+            {data: 'nama_ruang', name: 'nama_ruang'},
             {data:'action', name: 'action', orderable:false, searchable:false}
         ]
     })
     function addForm(){
+        $('#id').val('');
+        $('input[name=_method]').val('');
         save_method = "add";
         $('#modal-form').modal('show');
         $('#modal-form form')[0].reset();
-        $('.modal-title').text('Tambah Konfigurasi Kurikulum');
+
+        $('.modal-title').text('Tambah Master Ruang');
     }
 
     function editForm(id){
@@ -137,24 +140,19 @@
         $('input[name=_method]').val('PATCH');
         $('#modal-form form')[0].reset();
         $.ajax({
-            url: "{{ url('konfig_kurikulum')}}" + '/' + id + "/edit",
+            url: "{{ url('master_ruang')}}" + '/' + id + "/edit",
             type: "GET",
             dataType: "JSON",
         })
         .done(function(data) {
-            console.log("success");
+            console.log(data);
             $('#modal-form').modal('show');
-            $('.modal-title').text('Edit Konfig Kurikulum');
+            $('.modal-title').text('Edit Master Ruang');
 
             $('#id').val(data.id);
-            $('#nama_kurikulum').val(data.nama_kurikulum);
+            $('#kode_ruang').val(data.kode_ruang);
+            $('#nama_ruang').val(data.nama_ruang);
             
-            //cek val is_aktif
-            if (data.is_aktif == 1){
-               $('#is_aktif').attr('checked',true);
-            } else {
-                $('#is_aktif').attr('checked',false);
-            }
         })
         .fail(function() {
             console.log("error");
@@ -182,7 +180,7 @@
       }).then((result) => {
         if (result.value) {
             $.ajax({
-                url : "{{ url('konfig_kurikulum')}}"+ '/' + id,
+                url : "{{ url('master_ruang')}}"+ '/' + id,
           type : "POST",
           data : {'_method' : 'DELETE', '_token' : csrf_token},
             })
@@ -210,7 +208,7 @@
             });
             
           $.ajax({
-          url : "{{ url('konfig_kurikulum')}}"+ '/' + id,
+          url : "{{ url('master_ruang')}}"+ '/' + id,
           type : "POST",
           data : {'_method' : 'DELETE', '_token' : csrf_token},
           success : function(data) {
@@ -250,10 +248,11 @@
        if (!e.isDefaultPrevented()) {
         var id = $('#id').val();
         if (save_method == 'add') 
-            url = "{{ url('konfig_kurikulum')}}";
+            url = "{{ url('master_ruang')}}";
         else 
-            url = "{{ url('konfig_kurikulum') . '/'}}" + id;
-        console.log(url);
+            url = "{{ url('master_ruang') . '/'}}" + id;
+        // console.log(url);
+        // return false;
         $.ajax({
             url : url,
             type : "POST",
@@ -262,7 +261,7 @@
         .done(function(data) {
             console.log("success");
             $('#modal-form').modal('hide');
-                table.ajax.reload();
+                
                 if (save_method == 'add') 
                     swal({
                         title: 'Success!',
@@ -277,6 +276,7 @@
                       type : 'success',
                       timer : '1500' 
                     })
+
         })
         .fail(function() {
             console.log("error");
@@ -289,6 +289,8 @@
         })
         .always(function() {
             console.log("complete");
+            $('#id').val("");
+            table.ajax.reload();
         });
         return false;
        } 
