@@ -95,7 +95,7 @@ class RuangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Ruang::destroy($id);
     }
 
     public function apiMasterRuang(Request $request)
