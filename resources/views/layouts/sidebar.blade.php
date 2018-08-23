@@ -34,40 +34,35 @@
             <li>
                 <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Master</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="graph_flot.html">Ruangan</a></li>
-                    <li><a href="graph_morris.html">Program Studi</a></li>
-                    <li><a href="graph_rickshaw.html">Kelas</a></li>
-                    <li><a href="graph_chartjs.html">Mata Pelajaran</a></li>
+                    <li><a href="{{ url('ruangan') }}">Ruangan</a></li>
+                    <li><a href="{{ url('program-studi') }}">Program Studi</a></li>
+                    {{-- <li><a href="graph_rickshaw.html">Kelas</a></li> --}}
+                    <li><a href="{{ url('mata-pelajaran') }}">Mata Pelajaran</a></li>
                 </ul>
             </li>
             <li>
                 <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Konfigurasi</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="mailbox.html">Konfigurasi Tahun Akademik</a></li>
-                    <li><a href="mail_detail.html">Konfigurasi Kurikulum</a></li>
-                </ul>
-            </li>
-
-            
-            
-
-            <li>
-                <a href="grid_options.html"><i class="fa fa-laptop"></i> <span class="nav-label">Grid options</span></a>
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Tables</span><span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li><a href="table_basic.html">Static Tables</a></li>
-                    <li><a href="table_data_tables.html">Data Tables</a></li>
-                    <li><a href="jq_grid.html">jqGrid</a></li>
+                    <li><a href="{{ url('konfig-tahun') }}">Konfigurasi Tahun Akademik</a></li>
+                    <li><a href="{{ url('konfig-kurikulum') }}">Konfigurasi Kurikulum</a></li>
                 </ul>
             </li>
             <li>
-                <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span class="fa arrow"></span></a>
+                <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Data Induk</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="basic_gallery.html">Lightbox Gallery</a></li>
-                    <li><a href="carousel.html">Bootstrap Carusela</a></li>
-
+                    <li><a href="table_basic.html">Siswa</a></li>
+                    <li><a href="table_data_tables.html">Guru</a></li>
+                    <li><a href="jq_grid.html">Staff</a></li>
+                    <li><a href="jq_grid.html">Lain-lain</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Kegiatan KBM</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li><a href="basic_gallery.html">Peserta Didik</a></li>
+                    <li><a href="carousel.html">Wali Kelas</a></li>
+                    <li><a href="carousel.html">Jadwal Pelajaran</a></li>
+                    <li><a href="carousel.html">Absensi</a></li>
                 </ul>
             </li>
             <li>
