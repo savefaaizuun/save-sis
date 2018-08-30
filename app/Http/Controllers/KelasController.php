@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Datatables;
 use Illuminate\Support\Facades\DB;
 
-use App\Mapel;
+use App\Kelas;
 
-class MataPelajaranController extends Controller
+class KelasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class MataPelajaranController extends Controller
      */
     public function index()
     {
-        return view('master/mata_pelajaran');
+        //
     }
 
     /**
@@ -38,12 +38,7 @@ class MataPelajaranController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
-            'kode_mapel' => $request['kode_mapel'],
-            'nama_mapel' => $request['nama_mapel']
-        ];
-
-        return Mapel::create($data);
+        //
     }
 
     /**
@@ -65,8 +60,7 @@ class MataPelajaranController extends Controller
      */
     public function edit($id)
     {
-        $mapel = Mapel::find($id);
-        return $mapel;
+        //
     }
 
     /**
@@ -78,12 +72,7 @@ class MataPelajaranController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $mapel = Mapel::find($id);
-        $mapel->kode_mapel = $request['kode_mapel'];
-        $mapel->nama_mapel = $request['nama_mapel'];
-        $mapel->update();
-
-        return $mapel;
+        //
     }
 
     /**
@@ -94,15 +83,15 @@ class MataPelajaranController extends Controller
      */
     public function destroy($id)
     {
-        Mapel::destroy($id);
+        //
     }
 
-    public function apiMasterMapel(Request $request)
+    public function apiMasterKelas(Request $request)
     {
         
         DB::statement(DB::raw('set @rownum=0'));
 
-        $data = Mapel::get(['sis_master_mapel.*', 
+        $data = Kelas::get(['sis_master_kelas.*', 
                             DB::raw('@rownum  := @rownum  + 1 AS rownum')]);
 
         return Datatables::of($data)

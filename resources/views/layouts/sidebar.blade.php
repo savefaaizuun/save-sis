@@ -34,10 +34,10 @@
             <li>
                 <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Master</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
-                    <li><a href="graph_flot.html">Ruangan</a></li>
-                    <li><a href="graph_morris.html">Program Studi</a></li>
-                    <li><a href="graph_rickshaw.html">Kelas</a></li>
-                    <li><a href="graph_chartjs.html">Mata Pelajaran</a></li>
+                    <li><a href="{{ url('ruangan') }}">Ruangan</a></li>
+                    <li><a href="{{ url('program-studi' )}}">Program Studi</a></li>
+                    <li><a href="{{ url('kelas') }}">Kelas</a></li>
+                    <li><a href="{{ url('mata-pelajaran')}}">Mata Pelajaran</a></li>
                 </ul>
             </li>
             <li>

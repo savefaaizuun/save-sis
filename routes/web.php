@@ -25,15 +25,29 @@ Route::get('ruangan', function () {
     return view('master/ruangan');
 });
 
-Route::resource('master_ruang', 'RuangController');
-Route::get('api/master_ruang', 'RuangController@apiMasterRuang')->name('api.master_ruang');
-
 Route::get('program-studi', function () {
     return view('master/program_studi');
 });
 
+Route::get('mata-pelajaran', function () {
+    return view('master/mata_pelajaran');
+});
+
+Route::get('kelas', function () {
+    return view('master/kelas');
+});
+
+Route::resource('master_ruang', 'RuangController');
+Route::get('api/master_ruang', 'RuangController@apiMasterRuang')->name('api.master_ruang');
+
 Route::resource('master_prodi', 'ProgramStudiController');
 Route::get('api/master_prodi', 'ProgramStudiController@apiMasterProdi')->name('api.master_prodi');
+
+Route::resource('master_mapel', 'MataPelajaranController');
+Route::get('api/master_mapel', 'MataPelajaranController@apiMasterMapel')->name('api.master_mapel');
+
+Route::resource('master_kelas', 'KelasController');
+Route::get('api/master_kelas', 'KelasController@apiMasterKelas')->name('api.master_kelas');
 /*
 |--------------------------------------------------------------------------
 | End of Web Routes Konfigurasi
