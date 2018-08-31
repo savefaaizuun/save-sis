@@ -103,10 +103,22 @@
                     <label for="name" class="col-md-3 control-label">Tingkat</label>
                     <div class="col-md-6">
                         <select name="tingkat" id="tingkat" class="form-control" autofocus required>
-                            <option value="">- Pilih -</option>
+                            <option value="">- Pilih Tingkat -</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
+                        </select>
+                        <span class="help-block with-errors"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="col-md-3 control-label">Prodi</label>
+                    <div class="col-md-6">
+                        <select name="kode_prodi" id="kode_prodi" class="form-control" autofocus required>
+                            <option value="">- Pilih Prodi -</option>
+                           @foreach($list_prodi as $prodi)
+                                  <option value="{{$prodi->kode_prodi}}">{{$prodi->nama_prodi}}</option>
+                            @endforeach
                         </select>
                         <span class="help-block with-errors"></span>
                     </div>
@@ -137,7 +149,7 @@
             {data: 'kode_kelas', name: 'kode_kelas'},
             {data: 'nama_kelas', name: 'nama_kelas'},
             {data: 'tingkat', name: 'tingkat'},
-            {data: 'prodi', name: 'prodi'},
+            {data: 'kode_prodi', name: 'kode_prodi'},
             {data:'action', name: 'action', orderable:false, searchable:false}
         ]
     })
@@ -166,8 +178,10 @@
             $('.modal-title').text('Edit Master Ruang');
 
             $('#id').val(data.id);
-            $('#kode_mapel').val(data.kode_mapel);
-            $('#nama_mapel').val(data.nama_mapel);
+            $('#kode_kelas').val(data.kode_kelas);
+            $('#nama_kelas').val(data.nama_kelas);
+            $('#kode_prodi').val(data.kode_prodi);
+            $('#tingkat').val(data.tingkat);
             
         })
         .fail(function() {

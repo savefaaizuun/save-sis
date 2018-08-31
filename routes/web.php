@@ -20,22 +20,10 @@ Route::get('/', function () {
 | Web Routes Master
 |--------------------------------------------------------------------------
 */
-
-Route::get('ruangan', function () {
-    return view('master/ruangan');
-});
-
-Route::get('program-studi', function () {
-    return view('master/program_studi');
-});
-
-Route::get('mata-pelajaran', function () {
-    return view('master/mata_pelajaran');
-});
-
-Route::get('kelas', function () {
-    return view('master/kelas');
-});
+Route::get('program-studi', 'ProgramStudiController@index');
+Route::get('mata-pelajaran', 'MataPelajaranController@index');
+Route::get('ruangan', 'RuangController@index');
+Route::get('kelas', 'KelasController@index');
 
 Route::resource('master_ruang', 'RuangController');
 Route::get('api/master_ruang', 'RuangController@apiMasterRuang')->name('api.master_ruang');

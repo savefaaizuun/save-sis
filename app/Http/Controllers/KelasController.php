@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use Yajra\DataTables\Datatables;
 use Illuminate\Support\Facades\DB;
 
 use App\Kelas;
+use App\Prodi;  
 
 class KelasController extends Controller
 {
@@ -17,7 +19,11 @@ class KelasController extends Controller
      */
     public function index()
     {
-        //
+        $atribut  = array('title' => 'Data Kelas' );
+        $prodi = Prodi::all();
+        // print_r($prodi);die;
+
+        return view('master.kelas', ['list_prodi' => $prodi]);
     }
 
     /**
@@ -38,7 +44,14 @@ class KelasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'kode_kelas' => $request['kode_kelas'],
+            'nama_kelas' => $request['nama_kelas'],
+            'kode_prodi' => $request['kode_prodi'],
+            'tingkat' => $request['tingkat']
+        ];
+
+        return Kelas::create($data);
     }
 
     /**
@@ -60,7 +73,8 @@ class KelasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kelas = Kelas::find($id);
+        return $kelas;
     }
 
     /**
@@ -72,7 +86,14 @@ class KelasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kelas = Kelas::find($id);
+        $kelas->kode_kelas = $request['kode_kelas'];
+        $kelas->nama_kelas = $request['nama_kelas'];
+        $kelas->kode_prodi = $request['kode_prodi'];
+        $kelas->tingkat = $request['tingkat'];
+        $kelas->update();
+
+        return $kelas;
     }
 
     /**
@@ -83,7 +104,7 @@ class KelasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Kelas::destroy($id);
     }
 
     public function apiMasterKelas(Request $request)

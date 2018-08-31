@@ -18,7 +18,7 @@ class CreateSisMasterKelas extends Migration
             $table->string('kode_kelas', 10);
             $table->string('nama_kelas', 50);
             $table->string('tingkat', 5);
-            $table->string('prodi', 5);
+            $table->string('kode_prodi', 5);
             $table->timestamps();
         });
     }
